@@ -12,12 +12,14 @@ public struct Movie: Decodable {
     let image: String
     let id: Int
     let title: String
-    let releaseDate: String?
+    let releaseDate: String
+    let overview: String
     
     public enum CodingKeys: String, CodingKey {
         case image = "poster_path"
         case id
         case title
         case releaseDate = "release_date"
+        case overview
     }
 }

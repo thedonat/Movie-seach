@@ -17,8 +17,7 @@ final class AppRouter {
     }
     
     func start() {
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .orange
+        let viewController = MovieListBuilder.make()
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
