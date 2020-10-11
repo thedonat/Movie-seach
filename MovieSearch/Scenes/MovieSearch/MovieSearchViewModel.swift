@@ -62,7 +62,8 @@ final class MovieSearchViewModel: MovieSearchViewModelProtocol {
         }
     }
     
-    func selectMovie(at index: Int) {
-        //TODO
+    func selectMovie(with id: Int) {
+        let viewModel = MovieDetailViewModel(id: id)
+        delegate?.navigate(to: .detail(viewModel))
     }
 }

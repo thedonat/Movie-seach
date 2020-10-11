@@ -16,6 +16,8 @@ protocol NetworkManagerProtocol {
 
 public class NetworkManager: NetworkManagerProtocol {
     
+    public init() { }
+    
     func fetchMovies(type: ListType, completion: @escaping (Result<MovieResponse, NetworkError>) -> Void) {
         let endPoint = setEndPoint(type: type)
         let urlString = K.BASE_URL + endPoint.rawValue + K.API_KEY
@@ -38,6 +40,42 @@ public class NetworkManager: NetworkManagerProtocol {
     func searchMovies(query: String, completion: @escaping (Result<MovieResponse, NetworkError>) -> Void) {
         let urlString = K.SEARCH_URL + K.API_KEY + "&query=\(query)"
         print(urlString)
+        AF.request(urlString).responseData { (response) in
+            switch response.result {
+            case .success(let data):
+                do {
+                    let response = try JSONDecoder().decode(MovieResponse.self, from: data)
+                    completion(.success(response))
+                } catch {
+                    completion(.failure(.decoding))
+                }
+            case .failure:
+                completion(.failure(.network))
+            }
+        }
+    }
+    
+    func fetchDetails(id: Int, completion: @escaping (Result<MovieDetailsResponse, NetworkError>) -> Void) {
+        let urlString = K.BASE_URL + "/\(id)" + K.API_KEY
+        print(urlString)
+        
+        AF.request(urlString).responseData { (response) in
+            switch response.result {
+            case .success(let data):
+                do {
+                    let response = try JSONDecoder().decode(MovieDetailsResponse.self, from: data)
+                    completion(.success(response))
+                } catch {
+                    completion(.failure(.decoding))
+                }
+            case .failure:
+                completion(.failure(.network))
+            }
+        }
+    }
+    
+    func fetchSimilarMovies(id: Int, completion: @escaping (Result<MovieResponse, NetworkError>) -> Void) {
+        let urlString = K.BASE_URL + "/\(id)" + "/similar" + K.API_KEY
         
         AF.request(urlString).responseData { (response) in
             switch response.result {

@@ -9,11 +9,11 @@
 import Foundation
 
 public struct Movie: Decodable {
-    let image: String
+    let image: String?
     let id: Int
     let title: String
     let releaseDate: String
-    let overview: String
+    let overview: String?
     
     public enum CodingKeys: String, CodingKey {
         case image = "poster_path"
