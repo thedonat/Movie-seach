@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SimilarMoviesTableViewCellDelegate: class {
-    func cellTapped(with id: Int)
+    func cellTapped(with movieID: Int)
 }
 
 class SimilarMoviesTableViewCell: UITableViewCell {

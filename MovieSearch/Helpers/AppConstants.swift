@@ -13,4 +13,5 @@ struct K {
     static let API_KEY = "?api_key=f19243dec008358a10b071e605df2743"
     static let IMAGE_URL = "https://image.tmdb.org/t/p/w500"
     static let SEARCH_URL = "https://api.themoviedb.org/3/search/movie"
+    static let BASE_IMDB = "https://www.imdb.com/title/"
 }

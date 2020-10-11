@@ -11,4 +11,6 @@ import Foundation
 enum EndPoints: String {
     case getUpcoming = "/upcoming"
     case getNowPlaying  = "/now_playing"
+    case getSearch = "&query="
+    case getSimilar = "/similar"
 }

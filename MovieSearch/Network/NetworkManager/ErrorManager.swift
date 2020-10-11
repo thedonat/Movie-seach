@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum NetworkError: Error {
+enum ErrorManager: Error {
     case network
     case decoding
 

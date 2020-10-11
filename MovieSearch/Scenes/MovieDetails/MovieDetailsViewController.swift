@@ -60,6 +60,7 @@ extension MovieDetailsViewController: UITableViewDataSource {
         if indexPath.row == 0 {
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "MovieDetails", for: indexPath) as! MovieDetailsTableViewCell
             let movie = self.movieDetails
+            cell.delegate = self
             cell.setView(image: movie?.backdrop_path,
                          name: movie?.title,
                          overview: movie?.overview,
@@ -69,16 +70,22 @@ extension MovieDetailsViewController: UITableViewDataSource {
             return cell
         } else {
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "SimilarMovies", for: indexPath) as! SimilarMoviesTableViewCell
-            cell.movies = self.similarMovies
             cell.delegate = self
+            cell.movies = self.similarMovies
             return cell
         }
     }
 }
 
 extension MovieDetailsViewController: SimilarMoviesTableViewCellDelegate {
-    func cellTapped(with id: Int) {
-        viewModel.loadDetails(id: id)
-        viewModel.loadSimilarMovies(id: id)
+    func cellTapped(with movieID: Int) {
+        viewModel.loadDetails(id: movieID)
+        viewModel.loadSimilarMovies(id: movieID)
+    }
+}
+
+extension MovieDetailsViewController: MovieDetailsTableViewCellDelegate {
+    func imdbButtonTapped(with imdbID: String) {
+        viewModel.loadImdbPage(id: imdbID)
     }
 }

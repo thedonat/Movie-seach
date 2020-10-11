@@ -6,10 +6,11 @@
 //  Copyright © 2020 Burak Donat. All rights reserved.
 //
 
+import UIKit
 import Foundation
 
 final class MovieDetailViewModel: MovieDetailsViewModelProtocol {
-    
+
     weak var delegate: MovieDetailsViewModelDelegate?
     private let service =  NetworkManager()
     private var movieDetails: MovieDetailsResponse!
@@ -51,6 +52,13 @@ final class MovieDetailViewModel: MovieDetailsViewModelProtocol {
             case .failure(let error):
                 print(error.errorMessage)
             }
+        }
+    }
+
+    func loadImdbPage(id: String) {
+        let url = K.BASE_IMDB + "\(id)"
+        if let url = URL(string: url) {
+            UIApplication.shared.open(url)
         }
     }
 }

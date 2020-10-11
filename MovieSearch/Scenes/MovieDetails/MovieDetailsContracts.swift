@@ -12,6 +12,7 @@ protocol MovieDetailsViewModelProtocol {
     var delegate: MovieDetailsViewModelDelegate? { get set }
     func loadDetails(id: Int?)
     func loadSimilarMovies(id: Int?)
+    func loadImdbPage(id: String)
 }
 
 protocol MovieDetailsViewModelDelegate: class {

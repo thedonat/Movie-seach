@@ -67,3 +67,4 @@ final class MovieSearchViewModel: MovieSearchViewModelProtocol {
         delegate?.navigate(to: .detail(viewModel))
     }
 }
+

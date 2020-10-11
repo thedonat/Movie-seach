@@ -55,6 +55,7 @@ extension MovieSearchViewController: MovieSearchViewModelDelegate {
             
         case .showUpcomingMovies(let movieList):
             self.nowPlayingMovieList = movieList
+            pageControler.numberOfPages = nowPlayingMovieList.count
             collectionView.reloadData()
             
         case .showSearchResults(let movieList):
@@ -80,10 +81,8 @@ extension MovieSearchViewController: UISearchBarDelegate {
     }
     
     @objc func reload(_ searchBar: UISearchBar) {
-        guard let query = searchBar.text else {
-            print("nothing to search")
-            return
-        }
+        guard let query = searchBar.text else { return }
+        
         let queryText = query.replacingOccurrences(of: " ", with: "%20")
         if queryText != "" {
             viewModel.loadSearch(with: queryText)
@@ -146,6 +145,7 @@ extension MovieSearchViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NowPlayingMovieCell", for: indexPath) as! NowPlayingCollectionViewCell
         let movies = nowPlayingMovieList[indexPath.row]
         cell.setView(image: movies.image ?? "", title: movies.title)
+        pageControler.currentPage = indexPath.row
         return cell
     }
 }

@@ -11,4 +11,6 @@ import Foundation
 enum ListType: String{
     case UpcomingMovies
     case NowPlayingMovies
+    case Search
+    case Similar
 }

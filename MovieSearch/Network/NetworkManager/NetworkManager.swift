@@ -10,15 +10,15 @@ import Foundation
 import Alamofire
 
 protocol NetworkManagerProtocol {
-    func fetchMovies(type: ListType, completion: @escaping (Result<MovieResponse, NetworkError>) -> Void)
-    func searchMovies(query: String, completion: @escaping (Result<MovieResponse, NetworkError>) -> Void)
+    func fetchMovies(type: ListType, completion: @escaping (Result<MovieResponse, ErrorManager>) -> Void)
+    func searchMovies(query: String, completion: @escaping (Result<MovieResponse, ErrorManager>) -> Void)
 }
 
 public class NetworkManager: NetworkManagerProtocol {
     
     public init() { }
     
-    func fetchMovies(type: ListType, completion: @escaping (Result<MovieResponse, NetworkError>) -> Void) {
+    func fetchMovies(type: ListType, completion: @escaping (Result<MovieResponse, ErrorManager>) -> Void) {
         let endPoint = setEndPoint(type: type)
         let urlString = K.BASE_URL + endPoint.rawValue + K.API_KEY
         
@@ -37,9 +37,11 @@ public class NetworkManager: NetworkManagerProtocol {
         }
     }
     
-    func searchMovies(query: String, completion: @escaping (Result<MovieResponse, NetworkError>) -> Void) {
-        let urlString = K.SEARCH_URL + K.API_KEY + "&query=\(query)"
+    func searchMovies(query: String, completion: @escaping (Result<MovieResponse, ErrorManager>) -> Void) {
+        let endPoint = setEndPoint(type: .Search)
+        let urlString = K.SEARCH_URL + K.API_KEY + endPoint.rawValue + query
         print(urlString)
+        
         AF.request(urlString).responseData { (response) in
             switch response.result {
             case .success(let data):
@@ -55,9 +57,8 @@ public class NetworkManager: NetworkManagerProtocol {
         }
     }
     
-    func fetchDetails(id: Int, completion: @escaping (Result<MovieDetailsResponse, NetworkError>) -> Void) {
+    func fetchDetails(id: Int, completion: @escaping (Result<MovieDetailsResponse, ErrorManager>) -> Void) {
         let urlString = K.BASE_URL + "/\(id)" + K.API_KEY
-        print(urlString)
         
         AF.request(urlString).responseData { (response) in
             switch response.result {
@@ -74,8 +75,10 @@ public class NetworkManager: NetworkManagerProtocol {
         }
     }
     
-    func fetchSimilarMovies(id: Int, completion: @escaping (Result<MovieResponse, NetworkError>) -> Void) {
-        let urlString = K.BASE_URL + "/\(id)" + "/similar" + K.API_KEY
+    func fetchSimilarMovies(id: Int, completion: @escaping (Result<MovieResponse, ErrorManager>) -> Void) {
+        let endPoint = setEndPoint(type: .Similar)
+        let urlString = K.BASE_URL + "/\(id)" + endPoint.rawValue + K.API_KEY
+        print(urlString)
         
         AF.request(urlString).responseData { (response) in
             switch response.result {
@@ -100,6 +103,10 @@ private func setEndPoint(type: ListType) -> EndPoints {
         endPoint = .getNowPlaying
     case .UpcomingMovies:
         endPoint = .getUpcoming
+    case .Search:
+        endPoint = .getSearch
+    case .Similar:
+        endPoint = .getSimilar
     }
     return endPoint
 }

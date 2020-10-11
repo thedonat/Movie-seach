@@ -11,7 +11,7 @@
 		00A1E33E253054D9008CF0F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00A1E33D253054D9008CF0F9 /* Assets.xcassets */; };
 		00A1E341253054D9008CF0F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00A1E33F253054D9008CF0F9 /* LaunchScreen.storyboard */; };
 		00A1E34A25305589008CF0F9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A1E34925305589008CF0F9 /* NetworkManager.swift */; };
-		00A1E34C253055A2008CF0F9 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A1E34B253055A2008CF0F9 /* NetworkError.swift */; };
+		00A1E34C253055A2008CF0F9 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A1E34B253055A2008CF0F9 /* ErrorManager.swift */; };
 		00A1E3512530560F008CF0F9 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A1E3502530560F008CF0F9 /* Movie.swift */; };
 		00A1E3532530566B008CF0F9 /* MovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A1E3522530566B008CF0F9 /* MovieResponse.swift */; };
 		00A1E35625305C7E008CF0F9 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A1E35525305C7E008CF0F9 /* AppRouter.swift */; };
@@ -53,7 +53,7 @@
 		00A1E340253054D9008CF0F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00A1E342253054D9008CF0F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00A1E34925305589008CF0F9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		00A1E34B253055A2008CF0F9 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		00A1E34B253055A2008CF0F9 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 		00A1E3502530560F008CF0F9 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		00A1E3522530566B008CF0F9 /* MovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResponse.swift; sourceTree = "<group>"; };
 		00A1E35525305C7E008CF0F9 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
@@ -102,6 +102,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0043EEEF25338DC200E9DC68 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		00A1E328253054D7008CF0F9 = {
 			isa = PBXGroup;
 			children = (
@@ -148,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				00A1E34925305589008CF0F9 /* NetworkManager.swift */,
-				00A1E34B253055A2008CF0F9 /* NetworkError.swift */,
+				00A1E34B253055A2008CF0F9 /* ErrorManager.swift */,
 				00A1E36B25308259008CF0F9 /* EndPoints.swift */,
 			);
 			path = NetworkManager;
@@ -224,9 +231,10 @@
 		00A1E36D2530868D008CF0F9 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				00A1E38D2530B59B008CF0F9 /* Search */,
-				00A1E38C2530A459008CF0F9 /* Upcoming */,
+				0043EEEF25338DC200E9DC68 /* Home */,
 				00A1E38B2530A446008CF0F9 /* NowPlaying */,
+				00A1E38C2530A459008CF0F9 /* Upcoming */,
+				00A1E38D2530B59B008CF0F9 /* Search */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -461,7 +469,7 @@
 				00A1E3A02530C8E1008CF0F9 /* MovieDetailsContracts.swift in Sources */,
 				00A1E36C25308259008CF0F9 /* EndPoints.swift in Sources */,
 				00A1E36A25308223008CF0F9 /* TypePicker.swift in Sources */,
-				00A1E34C253055A2008CF0F9 /* NetworkError.swift in Sources */,
+				00A1E34C253055A2008CF0F9 /* ErrorManager.swift in Sources */,
 				00A1E3B22530FAF6008CF0F9 /* SimilarMoviesTableViewCell.swift in Sources */,
 				00A1E35F2530670B008CF0F9 /* MovieSearchViewController.swift in Sources */,
 				00A1E3B82531889E008CF0F9 /* SimilarMoviesCollectionViewCell.swift in Sources */,
