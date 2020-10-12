@@ -15,11 +15,17 @@ protocol SimilarMoviesTableViewCellDelegate: class {
 class SimilarMoviesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var noDataLabel: UILabel!
     weak var delegate: SimilarMoviesTableViewCellDelegate?
     
     var movies: [Movie] = [] {
         didSet {
             collectionView.reloadData()
+            if movies.count == 0 {
+                noDataLabel.text = "There is no similar movie found"
+            } else {
+                noDataLabel.isHidden = true
+            }
         }
     }
     

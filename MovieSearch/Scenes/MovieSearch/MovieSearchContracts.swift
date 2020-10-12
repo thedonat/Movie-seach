@@ -13,7 +13,7 @@ protocol MovieSearchViewModelProtocol {
     func loadNowPlaying()
     func loadUpcoming()
     func loadSearch(with query: String)
-    func selectMovie(with id: Int)
+    func selectMovie(with movieID: Int)
 }
 
 protocol MovieSearchViewModelDelegate: class {
@@ -21,7 +21,7 @@ protocol MovieSearchViewModelDelegate: class {
     func navigate(to route: MovieListViewRoute)
 }
 
-enum MovieSearchViewModelOutput{
+enum MovieSearchViewModelOutput: Equatable {
     case showNowPlayingMovies([Movie])
     case showUpcomingMovies([Movie])
     case showSearchResults([Movie])

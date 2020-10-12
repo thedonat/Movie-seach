@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="391" height="447"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="haY-cy-ZSP">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie" translatesAutoresizingMaskIntoConstraints="NO" id="haY-cy-ZSP">
                         <rect key="frame" x="0.0" y="0.0" width="391" height="300"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="300" id="1HQ-1p-yf4"/>
@@ -92,5 +92,6 @@
     </objects>
     <resources>
         <image name="imdb" width="1280" height="646"/>
+        <image name="movie" width="600" height="850"/>
     </resources>
 </document>

@@ -24,4 +24,8 @@ class SimilarMoviesCollectionViewCell: UICollectionViewCell {
         movieDateLabel.text = date
         ImageLoader().loadImage(with: image, image: movieImageView)
     }
+    
+    func handleError() {
+        
+    }
 }

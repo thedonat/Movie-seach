@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieSearchViewController: UIViewController {
+class MovieSearchViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -42,6 +42,14 @@ class MovieSearchViewController: UIViewController {
         tableView.register(UINib(nibName: "UpcomingTableViewCell", bundle: nil), forCellReuseIdentifier: "UpcomingMovieCell")
         searchTableView.register(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchCell")
         collectionView.register(UINib(nibName: "NowPlayingCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "NowPlayingMovieCell")
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) { // handle pageController's current page
+        let visibleRect = CGRect(origin: self.collectionView.contentOffset, size: self.collectionView.bounds.size)
+        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        if let visibleIndexPath = self.collectionView.indexPathForItem(at: visiblePoint) {
+            self.pageControler.currentPage = visibleIndexPath.row
+        }
     }
 }
 
@@ -87,6 +95,7 @@ extension MovieSearchViewController: UISearchBarDelegate {
         if queryText != "" {
             viewModel.loadSearch(with: queryText)
         } else {
+            searchBar.resignFirstResponder()
             searchTableView.isHidden = true
         }
     }
@@ -145,7 +154,6 @@ extension MovieSearchViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NowPlayingMovieCell", for: indexPath) as! NowPlayingCollectionViewCell
         let movies = nowPlayingMovieList[indexPath.row]
         cell.setView(image: movies.image ?? "", title: movies.title)
-        pageControler.currentPage = indexPath.row
         return cell
     }
 }
