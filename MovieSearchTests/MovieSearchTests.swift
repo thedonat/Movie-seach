@@ -51,10 +51,6 @@ class MovieSearchTests: XCTestCase {
         default:
             XCTFail("Output should be `showNowPlayingMovies`")
         }
-        
-        let expectedMovies = [movie1,movie2,movie3].map({ MovieResponse(results: <#T##[Movie]#>)   })
-        XCTAssertEqual(try view.outputs.element(at: 0), .showNowPlayingMovies(expectedMovies) )
-
      }
     
     func testNavigation() throws {
